@@ -7,4 +7,5 @@ files
 
 data <- files %>%
   map(unzip)       # reduce with rbind into one dataframe
+data
 view(data[1])
