@@ -8,7 +8,7 @@ files
 
 
 data <- files %>%
-  map(unzip)       # reduce with rbind into one dataframe
+  map(unzip)       # 
 data
 ##
 ## lo siguiente seria recuperar los archivos que necesitas
