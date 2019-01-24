@@ -33,3 +33,34 @@ data2
 ## para recuperar elementos especificos
 
 data2$states.csv
+
+
+#########
+# Esta es otra opcion para leer los archivos luego de descomprimir
+# lo bueno es que permite desglozar la lista a elementos 
+# individuales
+
+
+# leemos los nombres de los archivos
+files_to_read <- str_subset(list.files(), ".csv")
+files_to_read
+
+# retiramos los caracteres que indican la extencion del archivo
+
+file_names <- files_to_read %>% 
+  str_remove(., ".csv")
+file_names
+
+# EN ESTE PASO SE IMPORTAN LOS ARCHIVOS A R
+list_df_read <- files_to_read %>% 
+  map(read_csv) %>% # en este punto es donde se debe cambiar la 
+  # funcion segun el tipo de archivo que necesitas importar
+  set_names(nm = file_names)
+# el resultado seguira siendo un objeto de tipo lista
+typeof(list_df_read)
+class(list_df_read)
+
+# esta linea permite deglozar los elementos de la lista como
+# elemntos individuales en el ambiente de trabajo que seleccionaste
+
+list2env(list_df_read, envir = .GlobalEnv)
